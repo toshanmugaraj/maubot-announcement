@@ -28,5 +28,5 @@ The Announcement Bot is a plugin designed for use with the Mautrix framework. It
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/announcement-bot.git
+   git clone https://github.com/toshanmugaraj/maubot-announcement.git
    cd announcement-bot
