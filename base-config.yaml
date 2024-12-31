@@ -1,7 +1,3 @@
 # list of users who can sent announcement to their allowed users
 admins:
   - '@raj:xxxx.com'
-# list of users to whom the announcement should reach
-allowed_users:
-  - '@user10:xxxx.com'
-  - '@user11:xxxx.com'
