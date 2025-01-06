@@ -56,11 +56,11 @@ The Announcement Bot is a plugin designed for use with the Mautrix framework. It
 
    `{
      "type": "org.minbh.announcement",
-     "sender": "@raj:albgninc.com",
+     "sender": "@raj:xxxx.com",
      "content": {
        "Live": [
-         "@user11:albgninc.com",
-         "@user10:albgninc.com"
+         "@user11:xxxx.com",
+         "@user10:xxxx.com"
        ]
      }
      }
