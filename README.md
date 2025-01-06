@@ -47,3 +47,21 @@ The Announcement Bot is a plugin designed for use with the Mautrix framework. It
    ```bash
    git clone https://github.com/toshanmugaraj/maubot-announcement.git
    cd announcement-bot
+
+2. ** Configuration **:list of users who can engage Bot to broadcast message
+   admins:
+     - '@raj:xxxx.com'
+3. Create any new room, and if the room admin user is in the above `admins` configuration , he can invite the bot.
+4. Set the room state with list of the users that need to be broadcasted by the Bot.
+
+   `{
+     "type": "org.minbh.announcement",
+     "sender": "@raj:albgninc.com",
+     "content": {
+       "Live": [
+         "@user11:albgninc.com",
+         "@user10:albgninc.com"
+       ]
+     }
+     }
+   `
