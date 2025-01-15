@@ -93,7 +93,7 @@ class Announcement(Plugin):
 
         if evt.sender in admin_users:
             room_state = await self.room_manager.fetch_room_state(evt.room_id)
-            allowed_users = await self.extract_annoucment_members(room_state)
+            allowed_users = await self.room_manager.extract_annoucment_members(room_state)
             self.log.debug(f"Event received of type: {evt.type}")
             self.log.debug(f"Allowed users count: {len(allowed_users)}")
 
