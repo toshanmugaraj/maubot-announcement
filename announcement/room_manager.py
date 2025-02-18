@@ -25,12 +25,15 @@ class RoomManager:
         name = await self.extract_room_name(room_states)
         avatar_url = await self.extract_room_avatar(room_states)
 
+        custom_event = next((e for e in room_states if e.get("type") == 'm.room.encryption'), None)
+        is_room_encrypted = custom_event is not None
+
         room_options = {
             "visibility": RoomDirectoryVisibility.PRIVATE,
             "invitees": [user_id],
             "preset": RoomCreatePreset.PRIVATE,
             "topic": topic,
-            "name": "[ " + name + " ]",
+            "name": name + " 🦄",
             "is_direct": False,
             "initial_state": [
                 {
@@ -66,6 +69,15 @@ class RoomManager:
                 }
             ]
         }
+
+        if is_room_encrypted:
+            room_options["initial_state"].append({
+                "type": "m.room.encryption",
+                "sender": self.client.mxid,
+                "content": {
+                    "algorithm": "m.megolm.v1.aes-sha2"
+                },
+            })
         try:
             response = await self.client.create_room(**room_options)
             self.log.debug(f"Room created: {response}")
@@ -118,8 +130,9 @@ class RoomManager:
 
     async def extract_annoucment_members(self, room_state) -> List:
         """Extract the room avatar from the state events."""
-        avatar_event = next((e for e in room_state if e["type"] == "org.minbh.announcement"), None)
-        return avatar_event["content"].get("Live", []) if avatar_event else ""
+        minbh = next((e for e in room_state if e["type"] == "org.minbh.announcement"), None)
+        self.log.debug(f"extract members {minbh["content"].get("Live", []) if minbh else ""}.")
+        return minbh["content"].get("Live", []) if minbh else ""
     
     async def extract_room_avatar(self, state_events) -> str:
         """Extract the room avatar from the state events."""
