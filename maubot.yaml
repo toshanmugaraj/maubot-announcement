@@ -1,6 +1,6 @@
 maubot: 0.1.0
 id: org.minbh.announcement
-version: 0.0.2
+version: 0.0.9
 license: MIT
 modules:
   - announcement
